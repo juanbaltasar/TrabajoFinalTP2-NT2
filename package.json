@@ -1,0 +1,24 @@
+{
+  "name": "trabajo-final",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "nodemailer": "^6.4.14"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juanbaltasar/TrabajoFinalTP2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juanbaltasar/TrabajoFinalTP2/issues"
+  },
+  "homepage": "https://github.com/juanbaltasar/TrabajoFinalTP2#readme"
+}
