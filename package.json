@@ -1,0 +1,22 @@
+{
+  "name": "trabajofinaltp2-nt2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/juanbaltasar/TrabajoFinalTP2-NT2/tree/AG"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juanbaltasar/TrabajoFinalTP2-NT2/issues"
+  },
+  "homepage": "https://github.com/juanbaltasar/TrabajoFinalTP2-NT2#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
