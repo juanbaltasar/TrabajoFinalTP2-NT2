@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "mocha ./Back/test/Modulos/Temporizador.test.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/juanbaltasar/TrabajoFinalTP2-NT2/tree/AG"
+    "url": "https://github.com/juanbaltasar/TrabajoFinalTP2-NT2/"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/juanbaltasar/TrabajoFinalTP2-NT2#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mocha": "^8.2.0",
+    "node-cron": "^2.0.3",
+    "nodemon": "^2.0.6"
   }
 }
