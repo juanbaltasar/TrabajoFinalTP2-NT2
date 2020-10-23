@@ -12,35 +12,42 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-function MandarMail(A, Asunto = 'Sin Asunto', Texto = '', Html = '') {
-    let OpcionesMail
-    if (Texto != '') {
-        OpcionesMail = {
-            from: process.env.MAIL,
-            to: A,
-            subject: Asunto,
-            text: Texto
-        };
-    } else {
-        OpcionesMail = {
-            from: process.env.MAIL,
-            to: A,
-            subject: Asunto,
-            html: Html
-        };
-    }
-
-    transporter.sendMail(OpcionesMail, (error, info) => {
-        if (error) {
-            console.log(error);
-            return error;
+async function MandarMail(A, Asunto = 'Sin Asunto', Texto = '', Html = '') {
+        let OpcionesMail
+        if (Texto != '') {
+            OpcionesMail = {
+                from: process.env.MAIL,
+                to: A,
+                subject: Asunto,
+                text: Texto
+            };
         } else {
-            console.log(info);
-            return info;
+            OpcionesMail = {
+                from: process.env.MAIL,
+                to: A,
+                subject: Asunto,
+                html: Html
+            };
         }
-    })
-}
 
-//MandarMail("martinjuanbaltasargmail.com", "Hola", "", "");
+        let retorno;
 
-exports.MandarMail = MandarMail;
+        retorno = await transporter.sendMail(OpcionesMail/*, (error, info) => {
+                if (error) {
+                    //console.log(error);
+                    //return error;
+                    retorno = error;
+                } else {
+                    //console.log(info);
+                    //return info;
+                    retorno = info;
+                }
+            }*/)/*.then((res) => {retorno = res})*/.catch((err) => err)
+
+            return retorno;
+            //console.log('no retorno')
+
+            //MandarMail("martinjuanbaltasargmail.com", "Hola", "", "");
+        }
+
+        exports.MandarMail = MandarMail;
