@@ -1,3 +1,4 @@
+const open = require('open')
 const path = require('path');
 const express = require('express')
 const app = express()
@@ -16,6 +17,7 @@ const PORT = 1234
 app.listen(PORT, function (err) {
     if (err) console.log(err);
     console.log("Server listening on PORT", PORT);
+    open('http://localhost:' + PORT + '/test.pdf', {app: "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"});
 })
 
 //module.exports = { enviarReceta }
