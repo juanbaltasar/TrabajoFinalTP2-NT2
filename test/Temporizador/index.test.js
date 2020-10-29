@@ -1,5 +1,5 @@
 const assert = require('assert')
-const {buscarTurnosDeMañana, suscribirParaRecordatorio, desuscribirRecordatorio} = require('../../src/Temporizador/index.js')
+const {buscarTurnosDeMañana, suscribirParaRecordatorio, desuscribirRecordatorio} = require('../../Back/src/Temporizador/index.js')
 
 
 describe('Funcion buscarTurnosDeMañana', () => {
