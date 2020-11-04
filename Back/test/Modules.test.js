@@ -4,10 +4,19 @@ require('dotenv').config({
 
 const { doesNotMatch } = require('assert')
 const assert = require('assert')
+const { v4: uuidv4 } = require('uuid');
+const Turno = require('')
 
 const {EnviadorDeMails} = require('../src/Modules/EmailSender.js')
 
-describe('Modulo enviador de mails', function() {
+describe('Modulos', () => {
+
+    describe('Modulo Turnos', () => {
+        
+    })
+    
+
+    describe('Modulo enviador de mails', function() {
     
     const Enviador = new EnviadorDeMails({
         service: 'gmail',
@@ -67,4 +76,5 @@ describe('Modulo enviador de mails', function() {
             assert.strictEqual(res.response.includes('OK'), true)
         })
     })
+})
 })
