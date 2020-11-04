@@ -5,14 +5,18 @@
   "main": "index.js",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "nodemailer": "^6.4.14"
+    "mongodb": "^3.6.2",
+    "nodemailer": "^6.4.14",
+    "nyc": "^15.1.0"
   },
   "devDependencies": {
     "mocha": "^8.2.0"
   },
   "scripts": {
     "test": "mocha Back/test --recursive",
-    "tdd": "nodemon --exec npm run test"
+    "tdd": "nodemon --exec npm run test",
+    "coverage": "nyc npm run test",
+    "coverage-tdd": "nodemon --exec npm run coverage"
   },
   "repository": {
     "type": "git",
