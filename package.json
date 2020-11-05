@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon Back/main.js",
     "test": "mocha -- recursive",
     "tdd": "nodemon --exec mocha --recursive"
   },
