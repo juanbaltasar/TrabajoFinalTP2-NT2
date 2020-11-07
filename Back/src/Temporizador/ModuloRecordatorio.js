@@ -1,15 +1,13 @@
-const {temporizadorDeNotificaciones} = require ('./index.js')
+const {programarTarea} = require ('./index.js')
 const { getDao } = require('./TurnosDaoFactory.js')
 
 
 async function main (){
 
     const daoTurnos=await getDao('memoria')
-
-    turnos = await daoTurnos.getTurnos()
-    const crearLista= await temporizadorDeNotificaciones(turnos)
-    const lista=crearLista.crear(turnos)
-    console.log(lista)
+    const tarea= programarTarea()
+    const turnosDeManiana=tarea.generarTarea(daoTurnos.getNextDay)
+    console.log(turnosDeManiana)
 }
 
 main()

@@ -5,7 +5,7 @@ function crearServidor(puerto, db){
     return new Promise((resolve, reject)=>{
         const app = express()
         app.get('/api/turnos', async(req, res) => {
-            res.json (await db.getTurnos())
+            res.json (await db.getAll())
         })
         const server = app.listen(puerto)
         .on('listening', ()=> resolve(server))

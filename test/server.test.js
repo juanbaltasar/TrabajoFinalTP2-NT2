@@ -27,7 +27,7 @@ const turno2 = {
     }
   }
 
-describe('getTurnos', () => {
+describe('getAll', () => {
 
     let cliente
     let db
@@ -57,7 +57,7 @@ describe('getTurnos', () => {
 
     describe('si no hay turnos', () => {
         it('devuelve coleccion vacia', async () => {
-            const turnos = await cliente.getTurnos() 
+            const turnos = await cliente.getAll() 
             const esperados = []
             assert.deepStrictEqual (turnos, esperados)
         })
@@ -68,7 +68,7 @@ describe('getTurnos', () => {
             db.add(turno)
             db.add(turno2)
 
-            const turnos = await cliente.getTurnos() 
+            const turnos = await cliente.getAll() 
             const esperados = [turno, turno2]
             assert.deepStrictEqual (turnos, esperados)
         })
