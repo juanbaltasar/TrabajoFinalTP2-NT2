@@ -3,7 +3,7 @@ function crearTurnosDaoMemoria() {
         nombre: "lisa",
         apellido: "fernandez",
         dni:123,
-        mail: "lisa@getmail.com",
+        mail: "lisa@g3tmail.com",
         fecha: {
             hora:10,
             dia:7,
@@ -14,7 +14,7 @@ function crearTurnosDaoMemoria() {
         nombre: "manuel",
         apellido: "hernandez",
         dni:456,
-        mail: "manuel@getmail.com",
+        mail: "manuel@g3tmail.com",
         fecha: {
             hora:10,
             dia:8,
@@ -24,6 +24,9 @@ function crearTurnosDaoMemoria() {
     return {
         getAll: async () => { return [...turnos] },
         add: async (turno) => { turnos.push(turno) },
+        getByDni: async (dni) => {
+            return turnos.filter(e => e.dni === dni)
+        },
         getNextDay: async ()=> {
 
             let i = 0

@@ -1,14 +1,12 @@
-const {programarTarea} = require ('../Temporizador/index')
 const {EnviadorDeMails} = require ('../Mailer/EmailSender') 
 const { getDao } = require('../Temporizador/TurnosDaoFactory')
-const {crearCUEnviarMailALosTurnosDeManiana} = require ('./casoDeUso')
+const {crearCUEnviarMailAlPaciente} = require ('./casoDeUso')
 
 
 async function main (){
     
     const daoTurnos=await getDao('memoria')
-    turnos= await daoTurnos.getAll()
-    const crearLista= await programarTarea(turnos)
+    const dni= 123
     const mailer=  new EnviadorDeMails({
         service: 'gmail',
         auth: {
@@ -19,8 +17,8 @@ async function main (){
         }
     })
 
-    const enviarMailRecordatorio = crearCUEnviarMailALosTurnosDeManiana(crearLista, mailer, daoTurnos)
-    enviarMailRecordatorio.enviar()
+    const aviso = crearCUEnviarMailAlPaciente(dni, mailer, daoTurnos)
+    aviso.enviar()
 }
 
 main()
