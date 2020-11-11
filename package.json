@@ -6,6 +6,8 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "mongodb": "^3.6.2",
+    "mongodb-core": "^3.2.7",
+    "mongoose": "^5.10.12",
     "nodemailer": "^6.4.14",
     "nyc": "^15.1.0",
     "uuid": "^8.3.1"

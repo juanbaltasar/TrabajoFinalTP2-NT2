@@ -6,21 +6,23 @@ class EnviadorDeMails{
         this.transporter = nodemailer.createTransport(configuracion);
     }
 
-    async MandarMail(A, Asunto = 'Sin Asunto', Texto = '', Html = '') { //El nyc me marca que esta linea no es cubierta por los tests, supongo que por los parametros default
+    async MandarMail(A, Asunto = 'Sin Asunto', Texto = '', Html = '', adjuntos=[]) { //El nyc me marca que esta linea no es cubierta por los tests, supongo que por los parametros default
         let OpcionesMail;
         if (Texto != '') {
             OpcionesMail = {
                 from: this.configuracion.auth.user,
                 to: A,
                 subject: Asunto,
-                text: Texto
+                text: Texto,
+                attachments:adjuntos
             };
         } else {
             OpcionesMail = {
                 from: this.configuracion.auth.user,
                 to: A,
                 subject: Asunto,
-                html: Html
+                html: Html,
+                attachments:adjuntos
             };
         }
     
@@ -29,13 +31,13 @@ class EnviadorDeMails{
         try {
             retorno = await this.transporter.sendMail(OpcionesMail);
         } catch (error) {
-            throw new Error('Error in sending the mail')
+            throw new Error('Error in sending the mail. ' + error)
         }
         return retorno;
     }
 }
 
-exports.EnviadorDeMails = EnviadorDeMails
+module.exports = EnviadorDeMails
 
 
 // require('dotenv').config({

@@ -1,30 +1,26 @@
-require('dotenv').config({
+require('dotenv').config(/*{
     path: __dirname + '/../config.env'
-});
+}*/);
 
 const { doesNotMatch } = require('assert')
 const assert = require('assert')
 const { v4: uuidv4 } = require('uuid');
-const Turno = require('')
+const Turno = require('../src/Modules/Turno')
 
-const {EnviadorDeMails} = require('../src/Modules/EmailSender.js')
+const MailerFactory = require('../src/Factories/mailerFactory.js')
 
 describe('Modulos', () => {
-
-    describe('Modulo Turnos', () => {
-        
-    })
-    
-
     describe('Modulo enviador de mails', function() {
     
-    const Enviador = new EnviadorDeMails({
-        service: 'gmail',
-        auth: {
-            user: process.env.MAIL,
-            pass: process.env.PASS
-        }
-    })
+    // const Enviador = new EnviadorDeMails({
+    //     service: 'gmail',
+    //     auth: {
+    //         user: process.env.MAIL,
+    //         pass: process.env.PASS
+    //     }
+    // })
+
+    const Enviador = new MailerFactory().getMailer();
 
     describe('Si el mail de destino es incorrecto', function()  {
         it('lanza un error', async function() {
