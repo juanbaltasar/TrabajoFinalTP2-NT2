@@ -1,18 +1,21 @@
+const Turno = require("../Modules/Turno");
+
 class CUCancelaTurnoYMandaMail {
-    constructor(TurnoACancelar, Mailer){
-        this.TurnoACancelar = TurnoACancelar;
+    constructor(TurnosDao, Mailer){
+        this.TurnosDao = TurnosDao;
         this.Mailer = Mailer;
     }
 
-    async invocar () {
+    async invocar (Id) {
+        const TurnoACancelar = await this.TurnosDao.getById(Id)
         try {
-            this.TurnoACancelar.CancelarTurno()
-            await this.Mailer.MandarMail(this.TurnoACancelar.Mail, 'Cancelacion de Turno', '', `
-        <h1>Su turno del ${this.TurnoACancelar.Fecha.getDay()}/${this.TurnoACancelar.Fecha.getMonth()}/${this.TurnoACancelar.Fecha.getFullYear()} ha sido cancelado</h1>`)
+            TurnoACancelar.CancelarTurno()
+            await this.Mailer.MandarMail(TurnoACancelar.Mail, 'Cancelacion de Turno', '', `
+        <h1>Su turno del ${TurnoACancelar.Fecha.getDate()}/${TurnoACancelar.Fecha.getMonth()}/${TurnoACancelar.Fecha.getFullYear()} ha sido cancelado</h1>`)
         } catch (error) {
             throw new Error(error)
         }
-        return this.TurnoACancelar;
+        return TurnoACancelar;
     }
 }
 
