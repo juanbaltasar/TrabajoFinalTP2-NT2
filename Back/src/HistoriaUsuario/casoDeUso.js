@@ -1,12 +1,13 @@
 
-function crearCUEnviarMailAlPaciente(dni, mailer, daoTurnos){
+function crearCUEnviarMailALosTurnosDeManiana(mailer, daoTurnos){
     const CU={
         enviar:async()=>{
-            paciente= await daoTurnos.getByDni(dni)
-            mailer.MandarMail(paciente.mail, 'Verificacion de mail', `Hola ${paciente[0].nombre} este es un mensaje automatico`)
-        }   
+            const turnosDeManiana= await daoTurnos.getNextDay()
+            turnosDeManiana.forEach(element => {
+                mailer.MandarMail( 'silmaesquivel@gmail.com', 'Recordatorio', `Hola ${element.nombre} mañana tenes turno`)
+            })   
+        }
     }
-
     return CU
 }
-module.exports={crearCUEnviarMailAlPaciente}
+module.exports={crearCUEnviarMailALosTurnosDeManiana}

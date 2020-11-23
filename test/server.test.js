@@ -1,8 +1,8 @@
 const assert = require('assert')
 const axios = require('axios')
-const {crearServidor} = require ('../Back/src/Server.js')
-const { getDao } = require("../Back/src/Temporizador/TurnosDaoFactory")
-const { crearCliente } = require("../Back/src/Temporizador/ClienteRest")
+const {crearServidor} = require ('../Back/src/Servidor/Server')
+const { crearTurnosDao } = require("../Back/src/daoTurnos/TurnosDaoFactory")
+const { crearCliente } = require("../test/ClienteRest")
 
 const turno = {
     nombre: "lisa",
@@ -11,7 +11,7 @@ const turno = {
     mail: "lisa@getmail.com",
     fecha: {
         hora:10,
-        dia:29,
+        dia:20,
         mes:11
     }
   }
@@ -22,53 +22,44 @@ const turno2 = {
     mail: "manuel@getmail.com",
     fecha: {
         hora:10,
-        dia:28,
+        dia:21,
         mes:11
     }
   }
 
 describe('getAll', () => {
-
-    let cliente
     let db
+    let cliente
     let server
 
-    beforeEach(async()=>{
-        db = getDao('memoria')
+    before(async()=>{
+        db = await crearTurnosDao()
         server = await crearServidor(0, db)
-        cliente = crearCliente('http://localhost',server.address().port,'/api/turnos')
-
+        cliente = crearCliente('http://localhost',server.address().port,'/api/recordatorio')
     })
 
-    afterEach(()=>{
+    after(()=>{
         server.close()
     })
 
     describe('si el puerto esta ocupado', () => {
         it('no se conecta y lanza error', async () => {
             await assert.rejects(async () =>{
-                await crearServidor(server.address().port, db)
+                await crearServidor(server.address().port)
         }, (error)=>{
-            assert.strictEqual(error.message, 'address in use')
+            assert.strictEqual(error.message, 'error al conectarse al servidor')
             return true
             })
         })
     })
 
-    describe('si no hay turnos', () => {
-        it('devuelve coleccion vacia', async () => {
-            const turnos = await cliente.getAll() 
-            const esperados = []
-            assert.deepStrictEqual (turnos, esperados)
-        })
-    })
-
     describe('si hay turnos', () => {
         it('devuelve una coleccion con todos los turnos', async () => {
-            db.add(turno)
-            db.add(turno2)
+            await db.add(turno)
+            await db.add(turno2)
 
             const turnos = await cliente.getAll() 
+            console.log(turnos)
             const esperados = [turno, turno2]
             assert.deepStrictEqual (turnos, esperados)
         })

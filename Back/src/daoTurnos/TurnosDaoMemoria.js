@@ -1,23 +1,23 @@
 function crearTurnosDaoMemoria() {
     const turnos = [ {
-        nombre: "lisa",
+        nombre: "melisa",
         apellido: "fernandez",
-        dni:123,
-        mail: "lisa@g3tmail.com",
+        dni:586,
+        mail: "melisa@g3tmail.com",
         fecha: {
             hora:10,
-            dia:7,
+            dia:19,
             mes:11
         }
       },
     {
-        nombre: "manuel",
+        nombre: "emmanuel",
         apellido: "hernandez",
-        dni:456,
-        mail: "manuel@g3tmail.com",
+        dni:478,
+        mail: "emmanuel@g3tmail.com",
         fecha: {
             hora:10,
-            dia:8,
+            dia:20,
             mes:11
         }
       }];

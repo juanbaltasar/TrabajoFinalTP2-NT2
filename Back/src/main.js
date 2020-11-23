@@ -1,39 +1,28 @@
-const express = require ('express')
 const axios = require ('axios')
+const config = require ('../src/config/config')
+const { crearTurnosDao } = require('./daoTurnos/TurnosDaoFactory')
+const {crearServidor} = require ('./Servidor/Server')
 
-
-const app = express()
-
-let miContenedor
-
-app.use(express.json())
-
-
-app.get('/', (req, res)=>{
-    res.json ({contenedor: miContenedor})
-})
-
-app.post('/', (req, res)=>{
-    miContenedor= req.body
-    res.json ()
-})
-
-function crearServidor(puerto){
-    return new Promise((resolve, reject)=>{
-        const server = app.listen(puerto, async ()=>{
-            resolve(server)
-        })
-    })
-}
+let server
 
 async function main (){
-    const server = await crearServidor(0)
+    aplicacion= await crearTurnosDao()
+    server = await crearServidor({port: config.getServerPort(), aplicacion})
     const puertoAsignado = server.address().port
     console.log(`servidor en puerto ${puertoAsignado}`)
-    await axios.post(`http://localhost:${puertoAsignado}/`, {nombre:'mariano'})
-    const response= await axios.get(`http://localhost:${puertoAsignado}/`)
-    console.log(response.data)
-    server.close()
+    await axios.post(`http://localhost:${puertoAsignado}/api/recordatorio`)
 }
 
+process.on('SIGINT', async () => {
+    try {
+        if (server) {
+            server.close()
+            console.log('servidor cerrado con exito')
+        }
+    } catch (error) {
+        console.err(error)
+    } finally {
+        process.exit(0)
+    }
+})
 main()

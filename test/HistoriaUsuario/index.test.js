@@ -1,8 +1,8 @@
 const assert = require('assert')
 const {crearCUEnviarMailALosTurnosDeManiana} = require ('../../Back/src/HistoriaUsuario/casoDeUso')
 const {EnviadorDeMails} = require ('../../Back/src/Mailer/EmailSender')
-const { getDao } = require('../../Back/src/Temporizador/TurnosDaoFactory')
-const {programarTarea} = require ('../../Back/src/Temporizador/index')
+const { crearTurnosDao } = require('../../Back/src/Temporizador/TurnosDaoFactory')
+const {crearProgramadordeTareas} = require ('../../Back/src/Temporizador/index')
 
 describe('Caso de Uso', async () => {
   
@@ -15,9 +15,9 @@ describe('Caso de Uso', async () => {
             pass: "Ward2010"
         }
     })
-    const daoTurnos=await getDao('memoria')
+    const daoTurnos=await crearTurnosDao()
     turnos= await daoTurnos.getAll()
-    const crearLista= await programarTarea(turnos)
+    const crearLista= await crearProgramadordeTareas(turnos)
 
 
     describe('Si la lista de turnos esta vacia', function()  {
