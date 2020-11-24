@@ -1,13 +1,16 @@
 const { createServer } = require('./src/Servidor/Server.js')
+const config = require('./src/Config/config.js')
 const open = require('open')
+const CUFactory = require('./src/HU/CUFactory.js')
 
 let server
 
 async function main() {
     try {
-        server = await createServer({ port: 1111 })
+        server = await createServer({ port: config.getServerPort() })
         console.log(`Server listening on PORT: ${server.port}`)
-        open(`http://localhost:${server.port}/test.pdf`);
+        //open(`http://localhost:${server.port}/api/recetas/juan.pdf`);
+
     } catch (e) {
         console.log(e.message)
     }
