@@ -7,7 +7,7 @@ async function crearCUEnviarLinkDeRecetaPorMail(pacientesDao, recetasDao, mailer
             const receta = await recetasDao.getByDni(persona.dni)
             const fullLink = baseLink + receta.receta
             mailer.MandarMail(persona.mail, "Descargar turno mail", fullLink)
-
+            
         }
     }
 }

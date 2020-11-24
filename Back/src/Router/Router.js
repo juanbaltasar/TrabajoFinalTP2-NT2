@@ -13,10 +13,9 @@ function crearRecetasRouter() {
         //const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl
         res.download(fileLocation, file);
     }))
-    router.post('/', wrap(async (req, res) => {
-        const dni = 123
+    router.post('/CU/:id', wrap(async (req, res) => {
         const CUMandarMail = CUFactory.getCUEnviarLink()
-        CUMandarMail.invocar(dni)
+        CUMandarMail.invocar(req.params.id)
     }))
 
     return router

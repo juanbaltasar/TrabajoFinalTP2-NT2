@@ -1,7 +1,7 @@
 const { crearPacientesDaoMemoria } = require('./PacientesDao.js')
 const config = require('../config/config.js')
 
-function crearPacientesDaoFactory() {
+async function crearPacientesDaoFactory() {
 
     const tipoPersistencia = config.getTipoPers()
 

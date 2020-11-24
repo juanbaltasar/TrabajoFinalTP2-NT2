@@ -1,7 +1,6 @@
 const { createServer } = require('./src/Servidor/Server.js')
 const config = require('./src/Config/config.js')
 const open = require('open')
-const CUFactory = require('./src/HU/CUFactory.js')
 
 let server
 

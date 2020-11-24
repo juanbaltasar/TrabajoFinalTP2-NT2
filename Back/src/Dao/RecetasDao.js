@@ -1,4 +1,4 @@
-function crearRecetasDaoMemoria() {
+async function crearRecetasDaoMemoria() {
     const elementos = [{
         id: 1,
         dni: 123,

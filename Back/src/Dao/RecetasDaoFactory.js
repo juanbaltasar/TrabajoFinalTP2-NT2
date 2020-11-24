@@ -1,7 +1,7 @@
 const { crearRecetasDaoMemoria } = require('./RecetasDao.js')
 const config = require('../config/config.js')
 
-function crearRecetasDaoFactory() {
+async function crearRecetasDaoFactory() {
 
     const tipoPersistencia = config.getTipoPers()
 

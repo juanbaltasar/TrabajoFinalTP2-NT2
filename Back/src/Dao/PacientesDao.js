@@ -1,4 +1,4 @@
-function crearPacientesDaoMemoria() {
+async function crearPacientesDaoMemoria() {
     const elementos = [{
         id: 1,
         nombre: 'Pedro',
