@@ -6,6 +6,7 @@ let server
 
 async function main() {
     try {
+
         server = await createServer({ port: config.getServerPort() })
         console.log(`Server listening on PORT: ${server.port}`)
         //open(`http://localhost:${server.port}/api/recetas/juan.pdf`);

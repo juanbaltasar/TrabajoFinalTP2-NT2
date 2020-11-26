@@ -1,13 +1,30 @@
 const express = require('express')
-const { crearRecetasRouter } = require('../Router/Router.js')
+const config = require('../Config/config.js')
+const { crearRecetasRouter } = require('../Recetas/Router/RecetasRouter.js')
+const { crearPacientesRouter } = require('../Pacientes/Router/PacientesRouter.js')
 
-function createServer({ port }) {
+const { crearRecetasApi } = require('../Recetas/Aplicacion/RecetasApi.js')
+const { crearRecetasDaoFactory } = require('../Recetas/Dao/RecetasDaoFactory.js')
+
+const { crearPacientesApi } = require('../Pacientes/Aplicacion/PacientesApi.js')
+const { crearPacientesDaoFactory } = require('../Pacientes/Dao/PacientesDaoFactory.js')
+
+let recetasDao
+let pacientesDao
+
+async function createServer({ port }) {
 
     const app = express()
 
     app.use(express.json())
 
-    app.use('/api/recetas', crearRecetasRouter())
+    recetasDao = await crearRecetasDaoFactory(config.getCnxObj())
+    const recetasApi = crearRecetasApi(recetasDao)
+    pacientesDao = await crearPacientesDaoFactory(config.getCnxObj())
+    const pacientesApi = crearPacientesApi(pacientesDao)
+
+    app.use('/api/recetas', crearRecetasRouter(recetasApi))
+    app.use('/api/pacientes', crearPacientesRouter(pacientesApi))
 
     app.use(errorHandler)
 

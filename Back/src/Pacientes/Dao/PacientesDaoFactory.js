@@ -1,16 +1,18 @@
 const { crearPacientesDaoMemoria } = require('./PacientesDao.js')
-const config = require('../config/config.js')
+const { crearPacientesDaoDb } = require('./PacientesDaoDb.js')
+const config = require('../../Config/config.js')
 
 async function crearPacientesDaoFactory() {
 
     const tipoPersistencia = config.getTipoPers()
 
-    if (tipoPersistencia === 'memoria')
+    if (tipoPersistencia === 'memoria') {
         return crearPacientesDaoMemoria()
-    else if (tipoPersistencia === 'db')
+    } else if (tipoPersistencia === 'db') {
         return await crearPacientesDaoDb(config.getCnxObj())
-    else
+    } else {
         throw new Error('invalid type of db')
+    }
 }
 
 module.exports = { crearPacientesDaoFactory }
