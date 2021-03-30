@@ -20,7 +20,10 @@
     "test": "mocha Back/test --recursive",
     "tdd": "nodemon --exec npm run test",
     "coverage": "nyc npm run test",
-    "coverage-tdd": "nodemon --exec npm run coverage"
+    "coverage-tdd": "nodemon --exec npm run coverage",
+    "main": "node Back/src/main.js",
+    "nodemon-main": "nodemon --exec node Back/src/main.js",
+    "nodemon-server": "nodemon --exec node Back/src/server.js"
   },
   "repository": {
     "type": "git",

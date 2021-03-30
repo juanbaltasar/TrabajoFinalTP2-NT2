@@ -2,7 +2,7 @@ const Turno = require("../Modules/Turno");
 
 const Turnos = [];
 
-class DataTurnosMemoria{
+class TurnosDaoMemoria{
 
     async getById(Id){
         let TurnoBuscado = null;
@@ -17,6 +17,9 @@ class DataTurnosMemoria{
     add(TurnoAAgregar){
         Turnos.push(TurnoAAgregar)
     }
+
+    connect() { }
+    close() { }
 }
 
-module.exports = DataTurnosMemoria
+module.exports = TurnosDaoMemoria

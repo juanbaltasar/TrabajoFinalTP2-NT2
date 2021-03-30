@@ -14,12 +14,12 @@ const { v4: uuidv4 } = require('uuid');
 //     })
 
 class Turno{
-    constructor(IdCliente, Fecha, Mail){
-        this.Id = uuidv4();
+    constructor(IdCliente, Fecha, Mail, Id = uuidv4(), Cancelado = false){
+        this.Id = Id;
         this.IdCliente = IdCliente;
         this.Fecha = Fecha;
         this.Mail = Mail; //Este campo deberia estar en el usuario
-        this.Cancelado=false;
+        this.Cancelado=Cancelado;
     }
 
     CancelarTurno(/*A*/){

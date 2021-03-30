@@ -1,5 +1,7 @@
 const nodemailer = require('nodemailer');
 
+const { crearErrorDeUsuario, crearErrorDelServidor, crearErrorNoEncontrado } = require('../ErrorApi.js')
+
 class EnviadorDeMails{
     constructor(configuracion){
         this.configuracion = configuracion
@@ -31,7 +33,7 @@ class EnviadorDeMails{
         try {
             retorno = await this.transporter.sendMail(OpcionesMail);
         } catch (error) {
-            throw new Error('Error in sending the mail. ' + error)
+            throw crearErrorDelServidor(error);
         }
         return retorno;
     }

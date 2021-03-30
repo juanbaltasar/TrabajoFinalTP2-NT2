@@ -1,13 +1,13 @@
 const CUCancelaTurnoYMandaMail = require('../CU/CUCancelaTurnoYMandaMail.js')
-//const {EnviadorDeMails} = require('./Modules/EmailSender.js')
 const MailerFactory = require('../Factories/mailerFactory.js')
-
-//const Enviador = new MailerFactory().getMailer();
+const DaoFactory = require('../Factories/DaoFactory.js')
+const Turno = require('../Modules/Turno.js')
 
 class CUCancelaTurnoYMandaMailFactory{
-    constructor(TurnosDao){
-        this.TurnosDao = TurnosDao;
+    constructor(){
+        this.TurnosDao = new DaoFactory().getTurnosDaoDb();
         this.Mailer = new MailerFactory().getMailer()
+        this.TurnosDao.add(new Turno(1, new Date(), 'martinjuanbaltasar@gmail.com',1))
     }
     getCUCancelaTurnoYMandaMail(){
         return (new CUCancelaTurnoYMandaMail(this.TurnosDao, this.Mailer))

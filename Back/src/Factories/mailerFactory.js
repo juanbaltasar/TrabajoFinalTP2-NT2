@@ -5,7 +5,9 @@ require('dotenv').config(/*{
 const EnviadorDeMails = require('../Modules/EmailSender.js')
 
 const Enviador = new EnviadorDeMails({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, 
     auth: {
         user: process.env.MAIL,
         pass: process.env.PASS
